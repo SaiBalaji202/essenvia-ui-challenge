@@ -1,0 +1,14 @@
+<ng-container
+  *ngIf="documentStore.documents$ | async as documents; else noDataAvailable"
+>
+  <ul *ngIf="documents.length; else noDataAvailable">
+    <essenvia-doc-list-item
+      *ngFor="let document of documents"
+      [document]="document"
+    ></essenvia-doc-list-item>
+  </ul>
+</ng-container>
+
+<ng-template #noDataAvailable>
+  <p class="no-data">No Data Found!</p>
+</ng-template>

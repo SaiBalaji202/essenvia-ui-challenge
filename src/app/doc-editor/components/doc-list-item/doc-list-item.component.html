@@ -1,0 +1,28 @@
+<li class="card doc-card">
+  <div class="card__controls">
+    <fa-icon
+      class="edit-icon"
+      [icon]="faPencilAlt"
+      (click)="onDocumentUpdate()"
+    ></fa-icon>
+    <fa-icon
+      class="delete-icon"
+      [icon]="faTrashAlt"
+      (click)="onDocumentDelete()"
+    ></fa-icon>
+  </div>
+  <div class="card__detail">
+    <strong>Name: </strong> <span>{{ document.name }}</span>
+  </div>
+  <div class="card__detail">
+    <strong>Updated By: </strong> <span>{{ document.updatedBy }}</span>
+  </div>
+  <div class="card__detail">
+    <strong>Last Modified At: </strong>
+    <span>{{ document.updatedDate | date: "short" }}</span>
+  </div>
+  <div class="card__detail">
+    <strong>History Available: </strong>
+    <span>{{ document.history?.length ? "Yes" : "No" }}</span>
+  </div>
+</li>

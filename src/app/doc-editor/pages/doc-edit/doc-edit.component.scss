@@ -1,0 +1,29 @@
+:host {
+  display: block;
+  padding: 1rem 4rem;
+}
+
+.form__control {
+  margin-bottom: 2rem;
+}
+
+.form__buttons {
+  & > *:not(:last-child) {
+    margin-right: 1rem;
+  }
+}
+
+label {
+  display: block;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+input {
+  width: 100%;
+}
+
+.editor {
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}

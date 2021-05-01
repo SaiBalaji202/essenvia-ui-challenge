@@ -1,0 +1,26 @@
+@import "styles/abstract/colors";
+@import "styles/abstract/mixins";
+
+:host {
+  display: block;
+}
+
+header {
+  padding: 1.2rem 2rem;
+  background-color: $primary-light;
+  color: $on-primary;
+
+  @include flex(row, space-between, center);
+}
+
+h1 {
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+nav a {
+  fa-icon {
+    margin-right: 0.6rem;
+  }
+}

@@ -1,0 +1,40 @@
+<form class="form" [formGroup]="documentForm" (ngSubmit)="submit()">
+  <div class="form__control">
+    <label for="name">Document Name: </label>
+    <input
+      id="name"
+      type="text"
+      placeholder="Document Name"
+      [formControlName]="'name'"
+    />
+  </div>
+
+  <div class="form__control">
+    <label for="user">User Name: </label>
+    <input
+      id="user"
+      type="text"
+      placeholder="User Name"
+      [formControlName]="'updatedBy'"
+    />
+  </div>
+
+  <div class="form__control">
+    <label for="document-content">Content</label>
+    <div class="editor">
+      <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+      <ngx-editor
+        id="document-content"
+        [editor]="editor"
+        [formControlName]="'content'"
+      ></ngx-editor>
+    </div>
+  </div>
+
+  <div class="form__control form__buttons">
+    <button (click)="cancel()" type="button" class="btn btn-outline">
+      Cancel
+    </button>
+    <button class="btn btn-primary">Submit</button>
+  </div>
+</form>

@@ -1,0 +1,44 @@
+@import "styles/abstract/mixins";
+@import "styles/abstract/colors";
+
+.doc-card {
+  font-size: 1.8rem;
+  height: auto;
+  min-width: 50rem;
+}
+
+.card {
+  @include clearfix();
+  padding: 2rem;
+
+  &__controls {
+    float: right;
+
+    & > *:not(:last-child) {
+      margin-right: 0.8rem;
+    }
+  }
+
+  &__detail {
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+    letter-spacing: 1px;
+  }
+}
+
+.edit-icon {
+  color: $warning;
+
+  &:hover {
+    color: darken($color: $warning, $amount: 10%);
+  }
+}
+
+.delete-icon {
+  color: $error;
+
+  &:hover {
+    color: darken($color: $error, $amount: 10%);
+  }
+}
