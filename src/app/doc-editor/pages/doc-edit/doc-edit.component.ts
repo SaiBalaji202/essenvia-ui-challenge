@@ -21,6 +21,7 @@ export class DocEditComponent implements OnInit {
   editor: Editor;
   toolbar: Toolbar;
 
+  FormOperation = FormOperation;
   formOperation: FormOperation;
   documentForm: FormGroup;
   defaultFormData: Partial<Document>;
@@ -53,15 +54,18 @@ export class DocEditComponent implements OnInit {
 
   initForm(): void {
     this.documentForm = new FormGroup({
-      name: new FormControl(null, [
+      name: new FormControl(this.defaultFormData?.name, [
         Validators.required,
         Validators.minLength(5),
       ]),
-      updatedBy: new FormControl(null, [
+      updatedBy: new FormControl(this.defaultFormData?.updatedBy, [
         Validators.required,
         Validators.minLength(3),
       ]),
-      content: new FormControl(null, [Validators.required, this.notEmptyHtml]),
+      content: new FormControl(this.defaultFormData?.content, [
+        Validators.required,
+        this.notEmptyHtml,
+      ]),
     });
   }
 

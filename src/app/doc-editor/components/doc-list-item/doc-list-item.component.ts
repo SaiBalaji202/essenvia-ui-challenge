@@ -25,8 +25,6 @@ export class DocListItemComponent implements OnInit {
   }
 
   onDocumentUpdate(): void {
-    console.log('Update');
-
-    this.router.navigate(['documnet', this.document._id]);
+    this.router.navigate(['document', this.document._id]);
   }
 }

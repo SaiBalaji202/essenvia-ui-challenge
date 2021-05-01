@@ -1,3 +1,10 @@
+<h2>
+  {{
+    formOperation === FormOperation.ADD
+      ? "New Document"
+      : "Editing " + defaultFormData.name
+  }}
+</h2>
 <form class="form" [formGroup]="documentForm" (ngSubmit)="submit()">
   <div class="form__control">
     <label for="name">Document Name: </label>
@@ -35,6 +42,8 @@
     <button (click)="cancel()" type="button" class="btn btn-outline">
       Cancel
     </button>
-    <button class="btn btn-primary">Submit</button>
+    <button class="btn btn-primary">
+      {{ formOperation === FormOperation.ADD ? "Add" : "Edit" }}
+    </button>
   </div>
 </form>
