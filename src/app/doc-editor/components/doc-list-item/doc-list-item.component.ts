@@ -2,7 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FullDocument } from '@app/doc-editor/model/document.model';
 import { DocumentStore } from '@app/doc-editor/store/document.store';
-import { faPencilAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import {
+  faPencilAlt,
+  faTrashAlt,
+  faHistory,
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'essenvia-doc-list-item',
@@ -13,6 +17,7 @@ export class DocListItemComponent implements OnInit {
   @Input() document: FullDocument;
   faPencilAlt = faPencilAlt;
   faTrashAlt = faTrashAlt;
+  faHistory = faHistory;
 
   constructor(private router: Router, private documentStore: DocumentStore) {}
 
@@ -26,5 +31,9 @@ export class DocListItemComponent implements OnInit {
 
   onDocumentUpdate(): void {
     this.router.navigate(['document', this.document._id]);
+  }
+
+  showHistory(): void {
+    this.router.navigate(['document', this.document._id, 'history']);
   }
 }

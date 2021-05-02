@@ -10,9 +10,11 @@ import { DocumentStore } from './store/document.store';
 import { DocListComponent } from './components/doc-list/doc-list.component';
 import { DocListItemComponent } from './components/doc-list-item/doc-list-item.component';
 import { DocEditComponent } from './pages/doc-edit/doc-edit.component';
-import { DocumentHistoryComponent } from './pages/document-history/document-history.component';
 import { NgxEditorModule } from 'ngx-editor';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DocHistoryComponent } from './pages/doc-history/doc-history.component';
+import { DocHistoryListComponent } from './components/doc-history-list/doc-history-list.component';
+import { DocHistoryListItemComponent } from './components/doc-history-list-item/doc-history-list-item.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     DocListComponent,
     DocListItemComponent,
     DocEditComponent,
-    DocumentHistoryComponent,
+    DocHistoryComponent,
+    DocHistoryListComponent,
+    DocHistoryListItemComponent,
   ],
   imports: [
     CommonModule,

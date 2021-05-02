@@ -1,0 +1,14 @@
+@import "styles/abstract/mixins";
+
+:host {
+  display: block;
+  margin-top: 1.4rem;
+}
+
+ul {
+  @include flex(column, center, center);
+
+  & > *:not(:last-child) {
+    margin-bottom: 1.4rem;
+  }
+}

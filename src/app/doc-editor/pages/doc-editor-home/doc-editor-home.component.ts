@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DocumentStore } from '@app/doc-editor/store/document.store';
+import { SpinnerService } from '@app/shared/UIElements/spinner/spinner.service';
 
 @Component({
   selector: 'essenvia-doc-editor-home',
@@ -7,7 +8,7 @@ import { DocumentStore } from '@app/doc-editor/store/document.store';
   styleUrls: ['./doc-editor-home.component.scss'],
 })
 export class DocEditorHomeComponent implements OnInit {
-  constructor(private documentStore: DocumentStore) {}
+  constructor(public documentStore: DocumentStore) {}
 
   ngOnInit(): void {}
 }

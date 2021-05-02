@@ -1,4 +1,4 @@
-<h2>
+<h2 class="mg-sm">
   {{
     formOperation === FormOperation.ADD
       ? "New Document"
@@ -42,7 +42,7 @@
     <button (click)="cancel()" type="button" class="btn btn-outline">
       Cancel
     </button>
-    <button class="btn btn-primary">
+    <button [disabled]="!documentForm.dirty" class="btn btn-primary">
       {{ formOperation === FormOperation.ADD ? "Add" : "Edit" }}
     </button>
   </div>

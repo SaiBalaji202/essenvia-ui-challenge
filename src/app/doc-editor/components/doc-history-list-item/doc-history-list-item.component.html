@@ -1,0 +1,33 @@
+<li class="card history-card">
+  <div class="card__controls">
+    <fa-icon
+      class="restore-icon"
+      [icon]="faArrowAltCircleUp"
+      (click)="onRestore()"
+      title="Restore"
+    ></fa-icon>
+  </div>
+  <div class="card__detail">
+    <strong>History Id: </strong> <span>{{ history._id }}</span>
+  </div>
+  <div class="card__detail">
+    <strong>Name: </strong> <span>{{ history.name }}</span>
+  </div>
+  <div class="card__detail">
+    <strong>Updated By: </strong> <span>{{ history.updatedBy }}</span>
+  </div>
+  <div class="card__detail">
+    <strong>Last Modified At: </strong>
+    <span>{{ history.updatedDate | date: "short" }}</span>
+  </div>
+  <div class="card__detail">
+    <strong>Content: </strong>
+    <div class="editor">
+      <ngx-editor
+        id="document-content"
+        [enabled]="false"
+        [editor]="editor"
+      ></ngx-editor>
+    </div>
+  </div>
+</li>

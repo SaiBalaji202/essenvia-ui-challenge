@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Document } from '@app/doc-editor/model/document.model';
@@ -16,7 +16,7 @@ enum FormOperation {
   templateUrl: './doc-edit.component.html',
   styleUrls: ['./doc-edit.component.scss'],
 })
-export class DocEditComponent implements OnInit {
+export class DocEditComponent implements OnInit, OnDestroy {
   // Editor Config
   editor: Editor;
   toolbar: Toolbar;
@@ -77,7 +77,7 @@ export class DocEditComponent implements OnInit {
         this.defaultFormData = {
           _id: formData._id,
           name: formData.name,
-          content: formData.content,
+          content: formData.content ?? '',
           updatedBy: formData.updatedBy,
         };
       } else {
@@ -87,7 +87,7 @@ export class DocEditComponent implements OnInit {
     } else {
       this.defaultFormData = {
         name: null,
-        content: null,
+        content: '',
         updatedBy: null,
       };
     }
@@ -108,10 +108,11 @@ export class DocEditComponent implements OnInit {
   }
 
   submit(): void {
-    if (!this.documentForm.valid) {
+    if (this.documentForm.dirty && !this.documentForm.valid) {
       this.messages.showMessages('Fill the Form');
       return;
     }
+    console.log(this.documentForm.value);
 
     if (this.formOperation === FormOperation.ADD) {
       this.documentStore.addNewDocument(this.documentForm.value);
@@ -137,5 +138,12 @@ export class DocEditComponent implements OnInit {
     if (value && value === emptyHtml) {
       return { emptyHtml: true };
     }
+  }
+
+  // /////////////////////
+  // Destructor
+  // /////////////////////
+  ngOnDestroy(): void {
+    this.editor.destroy();
   }
 }

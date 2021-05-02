@@ -21,8 +21,21 @@
     <strong>Last Modified At: </strong>
     <span>{{ document.updatedDate | date: "short" }}</span>
   </div>
-  <div class="card__detail">
-    <strong>History Available: </strong>
-    <span>{{ document.history?.length ? "Yes" : "No" }}</span>
+  <div class="card__detail" *ngIf="document.history?.length; else noHistory">
+    <strong>Show History: </strong>
+    <span
+      ><fa-icon
+        class="edit-icon"
+        [icon]="faHistory"
+        (click)="showHistory()"
+        title="Show History"
+      ></fa-icon
+    ></span>
   </div>
+  <ng-template #noHistory>
+    <div class="card__detail" *ngIf="!document.history?.length">
+      <strong>History Available: </strong>
+      <span>No</span>
+    </div>
+  </ng-template>
 </li>

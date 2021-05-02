@@ -1,0 +1,11 @@
+@import "styles/abstract/colors";
+
+:host {
+  display: block;
+  padding: 1rem 4rem;
+}
+
+.gray-out {
+  color: $color-grey-dark-2;
+  font-style: italic;
+}

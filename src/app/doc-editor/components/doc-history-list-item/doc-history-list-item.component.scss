@@ -1,0 +1,41 @@
+@import "styles/abstract/mixins";
+@import "styles/abstract/colors";
+
+:host {
+  display: block;
+}
+
+.history-card {
+  font-size: 1.8rem;
+  height: auto;
+  min-width: 80rem;
+}
+
+.card {
+  @include clearfix();
+  padding: 2rem;
+
+  &__controls {
+    float: right;
+
+    & > *:not(:last-child) {
+      margin-right: 0.8rem;
+    }
+  }
+
+  &__detail {
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+    letter-spacing: 1px;
+  }
+}
+
+.restore-icon {
+  color: $warning;
+  transition: all 0.25s;
+
+  &:hover {
+    color: $primary-light;
+  }
+}

@@ -1,4 +1,4 @@
 <essenvia-messages></essenvia-messages>
 <essenvia-spinner></essenvia-spinner>
 
-<router-outlet></router-outlet>
+<router-outlet *ngIf="documentStore.documents$ | async"></router-outlet>

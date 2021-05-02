@@ -1,0 +1,14 @@
+<ng-container *ngIf="document.history?.length; else noDataAvailable">
+  <ul>
+    <essenvia-doc-history-list-item
+      *ngFor="let history of document.history"
+      [history]="history"
+      (historyRestore)="restoreHistory($event)"
+    >
+    </essenvia-doc-history-list-item>
+  </ul>
+</ng-container>
+
+<ng-template #noDataAvailable>
+  <p class="no-data">No History Available!</p>
+</ng-template>

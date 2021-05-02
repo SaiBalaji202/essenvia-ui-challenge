@@ -10,7 +10,7 @@ import { Document, FullDocument } from '../model/document.model';
   providedIn: 'root',
 })
 export class DocumentStore {
-  documentsSubject = new BehaviorSubject<FullDocument[]>([]);
+  documentsSubject = new BehaviorSubject<FullDocument[]>(null);
   documents$ = this.documentsSubject.asObservable();
 
   constructor(private http: HttpClient, private loading: SpinnerService) {
@@ -23,7 +23,7 @@ export class DocumentStore {
   private fetchDocuments(): Observable<FullDocument[]> {
     const documents$ = this.http
       .get<FullDocument[]>('./assets/documents.json')
-      .pipe(tap((documents) => this.documentsSubject.next(documents)));
+      .pipe(tap((documents) => this.documentsSubject.next(documents ?? [])));
     return this.loading.spinUntilComplete(documents$);
   }
 
@@ -35,6 +35,12 @@ export class DocumentStore {
     return this.documentsSubject
       .getValue()
       ?.find((document) => document._id === documentId);
+  }
+
+  getDocumentIdxById(documentId: string): number {
+    return this.documentsSubject
+      .getValue()
+      ?.findIndex((document) => document._id === documentId);
   }
 
   addNewDocument(document: Partial<Document>): void {
@@ -77,7 +83,7 @@ export class DocumentStore {
       updatedBy: documents[idx].updatedBy,
       updatedDate: documents[idx].updatedDate,
     };
-    history.push(oldDocument);
+    history.unshift(oldDocument);
 
     documents[idx] = {
       _id: uuidv4(),
@@ -88,6 +94,43 @@ export class DocumentStore {
       history,
     };
 
+    this.documentsSubject.next(documents);
+  }
+
+  restoreHistory(documentId: string, historyId: string): void {
+    const filteredDocumnetIdx = this.getDocumentIdxById(documentId);
+    if (!filteredDocumnetIdx || filteredDocumnetIdx === -1 || !historyId) {
+      return;
+    }
+
+    const documents = this.documentsSubject.getValue();
+    const document = { ...documents[filteredDocumnetIdx] };
+
+    const historyIdx = document.history.findIndex(
+      (history) => history._id === historyId
+    );
+    if (historyIdx === -1) {
+      return;
+    }
+
+    const documentToRestore = document.history[historyIdx];
+    const backupDocument = {
+      _id: document._id,
+      name: document.name,
+      content: document.content,
+      updatedBy: document.updatedBy,
+      updatedDate: document.updatedDate,
+    };
+    document.history.splice(historyIdx, 1);
+    document.history.unshift(backupDocument);
+
+    document._id = documentToRestore._id;
+    document.name = documentToRestore.name;
+    document.content = documentToRestore.content;
+    document.updatedBy = documentToRestore.updatedBy;
+    document.updatedDate = documentToRestore.updatedDate;
+
+    documents[filteredDocumnetIdx] = document;
     this.documentsSubject.next(documents);
   }
 

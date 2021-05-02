@@ -1,0 +1,13 @@
+<h2 class="mg-sm">
+  Document Detail
+  <span class="gray-out">
+    ( {{ document.name | shorten }} | Updated By:
+    {{ document.updatedBy | shorten }})
+  </span>
+</h2>
+
+<div class="document-detail">
+  <essenvia-doc-history-list
+    [documentId]="document._id"
+  ></essenvia-doc-history-list>
+</div>
