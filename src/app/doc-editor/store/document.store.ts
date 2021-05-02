@@ -1,18 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SpinnerService } from '@app/shared/UIElements/spinner/spinner.service';
-import { BehaviorSubject, Observable, zip } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { v4 as uuidv4 } from 'uuid';
 import { Document, FullDocument } from '../model/document.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class DocumentStore {
   documentsSubject = new BehaviorSubject<FullDocument[]>([]);
   documents$ = this.documentsSubject.asObservable();
 
   constructor(private http: HttpClient, private loading: SpinnerService) {
-    this.fetchDocuments().subscribe((data) => console.log(data));
+    this.fetchDocuments().subscribe();
   }
 
   // //////////////////

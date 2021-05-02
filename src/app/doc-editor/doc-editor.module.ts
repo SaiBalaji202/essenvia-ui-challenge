@@ -30,6 +30,5 @@ import { ReactiveFormsModule } from '@angular/forms';
     NgxEditorModule,
     SharedModule,
   ],
-  providers: [DocumentStore],
 })
 export class DocEditorModule {}
