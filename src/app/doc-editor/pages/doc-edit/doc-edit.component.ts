@@ -46,8 +46,11 @@ export class DocEditComponent implements OnInit, OnDestroy {
       ['bold', 'italic'],
       ['underline', 'strike'],
       ['ordered_list', 'bullet_list'],
-      ['link'],
+      ['link', 'image'],
       ['text_color', 'background_color'],
+      ['code', 'blockquote'],
+      [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+      ['align_left', 'align_center', 'align_right', 'align_justify'],
     ];
     this.editor = new Editor();
   }
